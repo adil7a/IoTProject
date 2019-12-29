@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html ng-app="angCusApp">
+      <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+        <script src="/ngCustomers.js"></script>
+		<meta charset="UTF-8">
+      </head>
+      <body>
+        <h1>Customers</h1>
+        <div ng-controller="CustomersListController">
+			
+		<table>		
+			<tr ng-repeat="customer in customers">
+				<td>{{ customer.custId }}</td>
+				<td>{{ customer.custName }}</td>
+				<td>{{ customer.custLocation }}</td>
+                                <td><input type="button" value="Delete" ng-click="confirmDelete(customer)" /></td>
+			</tr>
+		
+		</table>
+
+		<h2>Raw model</h2>  
+		{{ customers }}
+        </div>
+      </body>
+    </html>
+
