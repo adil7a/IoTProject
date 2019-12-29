@@ -1,0 +1,28 @@
+<!doctype html>
+
+<html ng-app="angLocApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="/ngParcels.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Locations</h1>
+<div ng-controller="ParcelsListController">
+
+    <table>
+        <tr ng-repeat="parcel in parcels">
+            <td>{{ parcel.parcelId }}</td>
+            <td>{{ parcel.weight }}</td>
+            <td>{{ parcel.custId }}</td>
+            <td>{{ parcel.finalLocation }}</td>
+        </tr>
+
+    </table>
+
+    <h2>Raw model</h2>
+    {{ parcels }}
+</div>
+</body>
+</html>
+

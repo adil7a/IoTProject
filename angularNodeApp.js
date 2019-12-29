@@ -26,4 +26,4 @@ let routes = require('./components/routes.js');
 routes(app, db);
 
 // run server  
-app.listen(3001);
+app.listen(3003);
