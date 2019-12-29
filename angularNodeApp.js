@@ -21,7 +21,7 @@ db.connect((err) => {
   console.log('Connected!');
 }); 
 
-// load routes: define controller which act on db
+// load routes: define cont roller which act on db
 let routes = require('./components/routes.js');
 routes(app, db);
 

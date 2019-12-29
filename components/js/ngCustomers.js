@@ -25,21 +25,5 @@ cusApp.controller('CustomersListController',  function($scope, $http) {
         }
         //delete(service /delCustomer) if ok
     }
-    
-    
-	/*$scope.newLocation = function() {
-		let newRawLoc = {};
-		let newLoc ={};
-		$http.get(URL_INSERT_LOC + `newAddress=${$scope.newAddress}&city=${$scope.newCity}`)
-			.then(function (response) {
-				newRawLoc = response.data;
-				
-				newLoc = {"locId": newRawLoc.id, "locAddress": newRawLoc.address, 
-									"city": newRawLoc.city};
-		
-
-				$scope.locations.push(newLoc);
-			});
-	}*/
 });
 
