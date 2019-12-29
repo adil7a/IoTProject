@@ -2,8 +2,8 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="0f20fe6f-89c7-4560-aa25-44ab9f3d9d1e" name="iot" url="http://etu-web2.ut-capitole.fr">
-        <fileTransfer host="etu-web2.ut-capitole.fr" port="22" rootFolder="/espace/21808953" accessType="SFTP">
+      <webServer id="4c1c6d1c-8d74-4a27-a252-e50ce56a73cd" name="IoT" url="http://etu-web2.ut-capitole.fr">
+        <fileTransfer host="etu-web2.ut-capitole.fr" port="22" rootFolder="/espace/21808556" accessType="SFTP">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
