@@ -6,10 +6,10 @@ app.get('/', function(req, res) {
     res.sendFile( __dirname + '/views' + '/menu.html');
 });
 
-app.get('/addLocations', function(req, res) {
+app.get('/addLocated', function(req, res) {
 	// send the main (and unique) page
     res.setHeader('Content-Type', 'text/html');
-    res.sendFile( __dirname + '/views' + '/ngLocations.html');
+    res.sendFile( __dirname + '/views' + '/ngLocated.html');
 });
 
 app.get('/addParcel', function(req, res) {
@@ -19,10 +19,10 @@ app.get('/addParcel', function(req, res) {
 });
 
 
-app.get('/ngLocations.js', function(req, res) {
+app.get('/ngLocated.js', function(req, res) {
 	// send the angular app
     res.setHeader('Content-Type', 'application/javascript');
-    res.sendFile( __dirname + '/js' + '/ngLocations.js');
+    res.sendFile( __dirname + '/js' + '/ngLocated.js');
 });
 
 app.get('/ngCustomers.js', function(req, res) {
@@ -47,30 +47,33 @@ app.get('/getAllCustomers', function(req, res) {
 			if (err) throw err;
 			res.json(result);
 		};
-  
 		db.query(sql, postProcessSQL);
 });
 
+app.get('/getAllParcels2', function(req, res) {
+	let sql = 'SELECT * FROM Parcels';
+	// response contains a json array with all tuples
+	let postProcessSQL =   function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	};
+	db.query(sql, postProcessSQL);
+});
+
 	app.get('/getAllParcels', function(req, res) {
-
 		let queryString = 'SELECT DISTINCT * FROM Customers C, Parcels P WHERE C.custId = P.custId';
-
 		db.query(queryString, function(err, results, fields){
 			if (err) throw err;
-
 			// call ejs to send the form
 			res.setHeader('Content-Type', 'text/html');
 			res.render('ngParcels', {parcels: results });
-
 		})
 	});
 
 app.get('/delCustomer', function(req, res) {
-    
     let custID = req.query.custId;
 		let sql = 'DELETE FROM Customers WHERE custId = ?';
                 let values = [custID];
-		
 
 		// response contains a json array with all tuples
 		let postProcessSQL =   function (err, result) {
@@ -80,8 +83,6 @@ app.get('/delCustomer', function(req, res) {
 		};
   
 		db.query(sql, postProcessSQL);
-	
-        
 });
 
 app.get('/all', function(req, res) {
@@ -90,7 +91,7 @@ app.get('/all', function(req, res) {
     res.sendFile( __dirname + '/views' + '/ngCustomers.html');
 });
 
-app.get('/insParcel', function(req, res) {
+app.get('/insLocated', function(req, res) {
     	let address = (req.query.newAddress);
         let city    = (req.query.newCity);
 

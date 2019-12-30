@@ -1,0 +1,43 @@
+<!doctype html>
+
+<html ng-app="angLocApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="/ngLocated.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Locations</h1>
+<div ng-controller="LocatedListController">
+    <h2>Add</h2>
+    <form ng-submit="newLocated()">
+        <label>Parcel
+            <select ng-model="newParcel">
+                <option ng-repeat="parcel in parcels" value= "{{parcel.parcelId}}" > {{parcel.parcelId}}</option>
+            </select>
+        </label>
+        <label>Location
+            <select ng-model="newlocations">
+                <option ng-repeat="location in locations" value= "{{location.locId}}" > {{location.locAddress}}</option>
+            </select>
+        </label>
+        <label>Date
+            <input type="date" ng-click="newDate" />
+        </label>
+        <label>Time
+            <input type="time" ng-click="newTime" />
+        </label>
+        <label>Status
+            <select ng-model="newStatus" >
+                <option> boarding </option>
+                <option> transfer </option>
+                <option> delivering </option>
+            </select>
+        </label>
+        <input type="submit"  value="Add" />
+    </form>
+
+</div>
+</body>
+</html>
+
