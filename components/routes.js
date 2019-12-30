@@ -15,7 +15,7 @@ app.get('/addLocations', function(req, res) {
 app.get('/addParcel', function(req, res) {
 	// send the main (and unique) page
 	res.setHeader('Content-Type', 'text/html');
-	res.sendFile( __dirname + '/views' + '/ngParcels.html');
+	res.sendFile( __dirname + '/views' + '/ngParcel.html');
 });
 
 
@@ -60,10 +60,23 @@ app.get('/getAllCustomers', function(req, res) {
 
 			// call ejs to send the form
 			res.setHeader('Content-Type', 'text/html');
-			res.render('ngParcels', {parcels: results });
-
+			res.render('viewParcel', {parcels: results });
 		})
 	});
+
+    app.get('/showParcelHistory', function(req, res) {
+
+        let sql = 'SELECT DISTINCT * FROM Locations LO, Located L WHERE LO.locId = L.locId';
+
+        // response contains a json array with all tuples
+        let postProcessSQL =   function (err, result) {
+            if (err) throw err;
+
+            res.json(result);
+        };
+
+        db.query(sql, postProcessSQL);
+    });
 
 app.get('/delCustomer', function(req, res) {
     
