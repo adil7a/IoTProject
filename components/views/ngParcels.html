@@ -1,34 +1,36 @@
-<!doctype html>
-
-<html ng-app="angLocApp">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
-    <script src="/ngParcels.js"></script>
     <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-<h1>Locations</h1>
-<div ng-controller="ParcelsListController">
+<h1>Parcels of a customer</h1>
 
-    <table>
-        <tr>
-            <th>ParcelId</th>
-            <th>Weight</th>
-            <th>Customer ID</th>
-            <th>Final Location</th>
-        </tr>
-        <tr ng-repeat="parcel in parcels">
-            <td>{{ parcel.parcelId }}</td>
-            <td>{{ parcel.weight }}</td>
-            <td>{{ parcel.custId }}</td>
-            <td>{{ parcel.finalLocation }}</td>
-        </tr>
+<table>
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Parcel Id</th>
+        <th>Weight</th>
+        <th>Destination</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% parcels.forEach( (parcel) => { %>
+    <tr>
+        <td><%= parcel.custName %> </td>
+        <td><%= parcel.parcelId %> </td>
+        <td><%= parcel.weight %> </td>
+        <td><%= parcel.finalLocation %> </td>
+    </tr>
+    <% }) %>
+    </tbody>
+</table>
 
-    </table>
+<p>
+    <a href="/"> Go Back to the Menu </a>
+</p>
 
-    <h2>Raw model</h2>
-    {{ parcels }}
-</div>
 </body>
 </html>
-
