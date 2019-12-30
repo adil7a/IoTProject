@@ -1,7 +1,13 @@
-
-// init server
 let express = require('express');
 let app = express();
+let ejs = require('ejs');
+
+// init server
+let path = require('path');
+app.set('views', path.join(__dirname, 'components/views'));
+app.set('view engine', 'html');
+app.engine('html', ejs.renderFile);
+
 
 // database configuration
 let mysql = require('mysql');

@@ -11,6 +11,12 @@
 <div ng-controller="ParcelsListController">
 
     <table>
+        <tr>
+            <th>ParcelId</th>
+            <th>Weight</th>
+            <th>Customer ID</th>
+            <th>Final Location</th>
+        </tr>
         <tr ng-repeat="parcel in parcels">
             <td>{{ parcel.parcelId }}</td>
             <td>{{ parcel.weight }}</td>

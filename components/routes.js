@@ -15,7 +15,7 @@ app.get('/addLocations', function(req, res) {
 app.get('/addParcel', function(req, res) {
 	// send the main (and unique) page
 	res.setHeader('Content-Type', 'text/html');
-	res.sendFile( __dirname + '/views' + '/ngParcel.html');
+	res.sendFile( __dirname + '/views' + '/ngParcels.html');
 });
 
 
@@ -29,7 +29,6 @@ app.get('/ngCustomers.js', function(req, res) {
     res.setHeader('Content-Type', 'application/javascript');
     res.sendFile( __dirname + '/js' + '/ngCustomers.js');
 });
-
 
 app.get('/getAllLocations', function(req, res) {
 		let sql = 'SELECT locId, locAddress, city FROM Locations';
@@ -50,9 +49,21 @@ app.get('/getAllCustomers', function(req, res) {
 		};
   
 		db.query(sql, postProcessSQL);
-	
-        
 });
+
+	app.get('/getAllParcels', function(req, res) {
+
+		let queryString = 'SELECT DISTINCT * FROM Customers C, Parcels P WHERE C.custId = P.custId';
+
+		db.query(queryString, function(err, results, fields){
+			if (err) throw err;
+
+			// call ejs to send the form
+			res.setHeader('Content-Type', 'text/html');
+			res.render('ngParcels', {parcels: results });
+
+		})
+	});
 
 app.get('/delCustomer', function(req, res) {
     
