@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Parcels</h1>
+<div>
+    <h2>Add</h2>
+    <form action="/insertParcel">
+        <label>Weight <input type="number" name="txt_weight" size="30"/> </label>
+        <label>Customer
+            <select name="txt_cus">
+                <% customers.forEach( (customer) => { %>
+                <option value= "<%= customer.custId %>" > <%= customer.custName %> </option>
+                <% }) %>
+            </select>
+        </label>
+        <label>Final location
+            <select name="txt_loc">
+                <% locations.forEach( (location) => { %>
+                <option value= "<%= location.locId %>" > <%= location.locAddress %> </option>
+                <% }) %>
+            </select>
+        </label>
+        <input type="submit" value="Add" />
+    </form>
+</div>
+</body>
+</html>
