@@ -92,17 +92,20 @@ app.get('/all', function(req, res) {
 });
 
 app.get('/insLocated', function(req, res) {
-    	let address = (req.query.newAddress);
-        let city    = (req.query.newCity);
+    	let newParcel = (req.query.newParcel);
+    	let newlocations    = (req.query.newlocations);
+		let newDate    = (req.query.newDate);
+		let newTime    = (req.query.newTime);
+		let newStatus    = (req.query.newStatus);
 
-		let sql = 'INSERT INTO Locations(locAddress, City) VALUES(?, ?)';
-		let values = [address, city];
+		let sql = 'INSERT INTO Located(parcelId, locId, date, time, operation) VALUES(?, ?, ?, ?, ?)';
+		let values = [newParcel, newlocations, newDate, newTime, newStatus];
 
 		// create a json object containing the inserted location
 		let postProcessInsert =   function (err, result) {
 			if (err) throw err;
 
-			res.json({id: result.insertId, address: address, city: city, 
+			res.json({parcelId: newParcel, locId: newlocations, date: newDate, time: newTime, operation: newStatus,
 			                  insertedLines: result.affectedRows });
 		};
 		db.query(sql, values, postProcessInsert);
