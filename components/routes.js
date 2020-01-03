@@ -18,6 +18,12 @@ app.get('/addParcel', function(req, res) {
 	res.sendFile( __dirname + '/views' + '/ngParcels.html');
 });
 
+app.get('/showHistory', function(req, res) {
+		// send the main (and unique) page
+	res.setHeader('Content-Type', 'text/html');
+	res.sendFile( __dirname + '/views' + '/ngParcelHistory.html');
+	});
+
 
 app.get('/ngLocated.js', function(req, res) {
 	// send the angular app
@@ -28,6 +34,11 @@ app.get('/ngLocated.js', function(req, res) {
 app.get('/ngCustomers.js', function(req, res) {
     res.setHeader('Content-Type', 'application/javascript');
     res.sendFile( __dirname + '/js' + '/ngCustomers.js');
+});
+
+app.get('/ngParcelsHistory.js', function(req, res) {
+	res.setHeader('Content-Type', 'application/javascript');
+	res.sendFile( __dirname + '/js' + '/ngParcelsHistory.js');
 });
 
 app.get('/getAllLocations', function(req, res) {
@@ -52,13 +63,29 @@ app.get('/getAllCustomers', function(req, res) {
 
 app.get('/getAllParcels2', function(req, res) {
 	let sql = 'SELECT * FROM Parcels';
+	console.log('getAllParcels2');
 	// response contains a json array with all tuples
 	let postProcessSQL =   function (err, result) {
 		if (err) throw err;
+		console.log(result);
 		res.json(result);
 	};
 	db.query(sql, postProcessSQL);
 });
+
+	app.get('/getAllParcelsHistory', function(req, res) {
+		let sql = 'SELECT * FROM Parcels P, Located L, Locations Lo WHERE P.parcelId = L.parcelId AND L.locId = Lo.locId';
+		console.log('getAllParcels2');
+		// response contains a json array with all tuples
+		let postProcessSQL =   function (err, result) {
+			if (err) throw err;
+			console.log(result);
+			res.json(result);
+		};
+		db.query(sql, postProcessSQL);
+	});
+
+
 
 	app.get('/getAllParcels', function(req, res) {
 		let queryString = 'SELECT DISTINCT * FROM Customers C, Parcels P WHERE C.custId = P.custId';
