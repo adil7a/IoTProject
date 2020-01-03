@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html ng-app="angParcelApp">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="/ngParcelsHistory.js"></script>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Parcels</h1>
+<div ng-controller="ParcelsListController">
+
+    <table>
+        <tr>
+            <th>Parcel ID</th>
+            <th>Weight</th>
+            <th>Customer ID</th>
+            <th>Final Location</th>
+        </tr>
+        <tbody>
+        <tr ng-repeat="parcel in parcels">
+            <td>{{ parcel.parcelId }}</td>
+            <td>{{ parcel.weight }}</td>
+            <td>{{ parcel.custId }}</td>
+            <td>{{ parcel.finalLocation }}</td>
+            <td><input type="button" value="Show History" ng-click="GetDetails($index)" /></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+
