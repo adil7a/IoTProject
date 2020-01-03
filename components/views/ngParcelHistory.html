@@ -10,12 +10,13 @@
 <h1>Parcels</h1>
 <div ng-controller="ParcelsListController">
 
-    <table>
+    <table border="1">
         <tr>
             <th>Parcel ID</th>
             <th>Weight</th>
             <th>Customer ID</th>
             <th>Final Location</th>
+            <th>Action</th>
         </tr>
         <tbody>
         <tr ng-repeat="parcel in parcels">
@@ -27,6 +28,31 @@
         </tr>
         </tbody>
     </table>
+    <br />
+    <h2>History</h2>
+    <table border="1">
+        <tr>
+            <th>Parcel ID</th>
+            <th>Loc ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Operation</th>
+            <th>Location</th>
+            <th>City</th>
+        </tr>
+        <tbody>
+        <tr ng-repeat="history in parcelHistory">
+            <td>{{ history.parcelId }}</td>
+            <td>{{ history.locId }}</td>
+            <td>{{ history.date }}</td>
+            <td>{{ history.time }}</td>
+            <td>{{ history.operation }}</td>
+            <td>{{ history.locAddress }}</td>
+            <td>{{ history.city }}</td>
+        </tr>
+        </tbody>
+    </table>
+
 </div>
 </body>
 </html>
