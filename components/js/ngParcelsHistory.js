@@ -2,9 +2,9 @@ parcelApp = angular.module('angParcelApp', []);
 
 parcelApp.controller('ParcelsListController',  function($scope, $window, $http) {
 
-    let URL_ALL_PARCELS = "http://localhost:3003/getAllParcels2";
-    let URL_HISTORY_PARCEL = "http://localhost:3003/getAllLocated";
-    let URL_DELETE_PARCEL_OPERATION = "http://localhost:3003/delParcelOperation";
+    let URL_ALL_PARCELS = "http://localhost:3001/getAllParcels2";
+    let URL_HISTORY_PARCEL = "http://localhost:3001/getAllLocated";
+    let URL_DELETE_PARCEL_OPERATION = "http://localhost:3001/delParcelOperation";
 
     $scope.parcels = [];
     $scope.parcelHistory = [];

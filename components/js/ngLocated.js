@@ -1,9 +1,9 @@
 locApp = angular.module('angLocApp', []);
 
 locApp.controller('LocatedListController',  function($scope, $http) {
-	let URL_ALL_LOCS = "http://localhost:3003/getAllLocations";
-	let URL_ALL_PARC = "http://localhost:3003/getAllParcels2";
-	let URL_INSERT_LOC = "http://localhost:3003/insLocated?";
+	let URL_ALL_LOCS = "http://localhost:3001/getAllLocations";
+	let URL_ALL_PARC = "http://localhost:3001/getAllParcels2";
+	let URL_INSERT_LOC = "http://localhost:3001/insLocated?";
     
 	$scope.locations = [];
 	$http.get(URL_ALL_LOCS).then(function(response) {

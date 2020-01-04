@@ -122,11 +122,6 @@ app.get('/delCustomer', function(req, res) {
 		db.query(sql, postProcessSQL);
 });
 
-app.get('/all', function(req, res) {
-	// send the main (and unique) page
-    res.setHeader('Content-Type', 'text/html');
-    res.sendFile( __dirname + '/views' + '/ngCustomers.html');
-});
 
 app.get('/insLocated', function(req, res) {
     	let newParcel = (req.query.newParcel);
