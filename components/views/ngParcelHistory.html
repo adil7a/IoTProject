@@ -24,7 +24,9 @@
             <td>{{ parcel.weight }}</td>
             <td>{{ parcel.custId }}</td>
             <td>{{ parcel.finalLocation }}</td>
-            <td><input type="button" value="Show History" ng-click="GetDetails($index)" /></td>
+            <!--<td><input type="button" value="Show History" ng-click="GetDetails($index)" /></td>-->
+            <td><input type="button" value="Show History" ng-click="GetDetails(parcel.parcelId)"/></td>
+
         </tr>
         </tbody>
     </table>
@@ -37,8 +39,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Operation</th>
-            <th>Location</th>
-            <th>City</th>
+            <th>Action</th>
         </tr>
         <tbody>
         <tr ng-repeat="history in parcelHistory">
@@ -47,8 +48,7 @@
             <td>{{ history.date }}</td>
             <td>{{ history.time }}</td>
             <td>{{ history.operation }}</td>
-            <td>{{ history.locAddress }}</td>
-            <td>{{ history.city }}</td>
+            <td><input ng-if="$last" type="button" value="Rollback" ng-click="CancelOperation(history)"/></td>
         </tr>
         </tbody>
     </table>

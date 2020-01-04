@@ -73,9 +73,8 @@ app.get('/getAllParcels2', function(req, res) {
 	db.query(sql, postProcessSQL);
 });
 
-	app.get('/getAllParcelsHistory', function(req, res) {
-		let sql = 'SELECT * FROM Parcels P, Located L, Locations Lo WHERE P.parcelId = L.parcelId AND L.locId = Lo.locId';
-		console.log('getAllParcels2');
+	app.get('/getAllLocated', function(req, res) {
+		let sql = 'SELECT * FROM Located L, Locations LO WHERE L.locId = LO.locId';
 		// response contains a json array with all tuples
 		let postProcessSQL =   function (err, result) {
 			if (err) throw err;
@@ -85,7 +84,18 @@ app.get('/getAllParcels2', function(req, res) {
 		db.query(sql, postProcessSQL);
 	});
 
-
+	app.get('/getAllLocated/:parcelId', function(req, res) {
+		let { parcelId } = req.params;
+		let sql = 'SELECT * FROM Located L WHERE L.parcelId = ?';
+		let values = [parcelId]
+		// response contains a json array with all tuples
+		let postProcessSQL =   function (err, result) {
+			if (err) throw err;
+			console.log(result);
+			res.json(result);
+		};
+		db.query(sql, values, postProcessSQL);
+	});
 
 	app.get('/getAllParcels', function(req, res) {
 		let queryString = 'SELECT DISTINCT * FROM Customers C, Parcels P WHERE C.custId = P.custId';
@@ -93,7 +103,7 @@ app.get('/getAllParcels2', function(req, res) {
 			if (err) throw err;
 			// call ejs to send the form
 			res.setHeader('Content-Type', 'text/html');
-			res.render('ngParcels', {parcels: results });
+			res.render('viewParcel', {parcels: results });
 		})
 	});
 
@@ -137,5 +147,17 @@ app.get('/insLocated', function(req, res) {
 		};
 		db.query(sql, values, postProcessInsert);
 });
+
+app.get('/delParcelOperation/:locId', function(req, res) {
+		let { locId } = req.params;
+		let sql = 'DELETE FROM Located WHERE locId = ?';
+		let values = [locId];
+		// response contains a json array with all tuples
+		let postProcessSQL =   function (err, result) {
+			if (err) throw err;
+			res.json({deletedLines: result.affectedRows });
+		};
+		db.query(sql, values, postProcessSQL);
+	});
 };
 
